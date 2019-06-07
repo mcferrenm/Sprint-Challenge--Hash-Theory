@@ -14,6 +14,12 @@ A     B     result
 1     1       ?
 ```
 
+False - False --- True
+False - True --- False
+True - False --- True
+True - True --- True
+
+
 2. `(¬A ∨ B) ∧ ¬(A ∧ ¬B)`   (alternate: `(!A || B) && !(A && !B)`)
 ```
 A     B     result
@@ -23,6 +29,12 @@ A     B     result
 1     0       ?
 1     1       ?
 ```
+
+False - False --- True
+False - True --- True
+True - False --- False
+True - True --- True
+
 
 3. `¬(A ∨ B) ∨ ( (A ∨ C) ∧ ¬(B ∨ ¬C) )`   (alternate: `!(A || B) || ( (A || C) && !(B || !C) )`)
   * (Hint: Is it possible to calculate this using code?)
@@ -38,6 +50,15 @@ A     B     C     result
 1     1     0       ?
 1     1     1       ?
 ```
+
+False - False - False --- True
+False - False - True --- True
+False - True - False --- False
+False - True - True --- False
+True - False - False --- False
+True - False - True --- True
+True - True - False --- False
+True - True - True --- False
 
 ## STRETCH GOAL
 
