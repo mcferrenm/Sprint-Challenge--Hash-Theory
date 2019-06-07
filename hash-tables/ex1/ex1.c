@@ -6,8 +6,30 @@
 Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
   HashTable *ht = create_hash_table(16);
+  Answer *answer = malloc(sizeof(Answer));
 
-  /* YOUR CODE HERE */
+  // Insert weights as keys, and indices as values into hash table
+  for (int i = 0; i < length; i++) {
+    hash_table_insert(ht, weights[i], i);
+  }
+  
+  for (int i = 0; i < length ; i++) {
+    int retrieved = hash_table_retrieve(ht, limit - weights[i]);
+
+    if (retrieved != -1 && i != retrieved) {
+      if (i >= retrieved) {
+
+        answer->index_1 = i;
+        answer->index_2 = retrieved;
+        return answer;
+        
+      } else {
+        answer->index_1 = retrieved;
+        answer->index_2 = i;
+        return answer;
+      }
+    } 
+  }
 
   return NULL;
 }
@@ -29,17 +51,17 @@ int main(void)
   Answer *answer_1 = get_indices_of_item_weights(&weights_1, 1, 9);
   print_answer(answer_1);  // NULL
 
-  // TEST 2
+  // // TEST 2
   int weights_2[] = {4, 4};
   Answer* answer_2 = get_indices_of_item_weights(weights_2, 2, 8);
   print_answer(answer_2);  // {1, 0}
 
-  // TEST 3
+  // // TEST 3
   int weights_3[] = {4, 6, 10, 15, 16};
   Answer* answer_3 = get_indices_of_item_weights(weights_3, 5, 21);
   print_answer(answer_3);  // {3, 1}
 
-  // TEST 4
+  // // TEST 4
   int weights_4[] = {12, 6, 7, 14, 19, 3, 0, 25, 40};
   Answer* answer_4 = get_indices_of_item_weights(weights_4, 9, 7);
   print_answer(answer_4);  // {6, 2}
