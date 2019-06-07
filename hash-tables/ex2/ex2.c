@@ -23,6 +23,9 @@ char **reconstruct_trip(Ticket **tickets, int length)
     route[i] = hash_table_retrieve(ht, route[i - 1]); 
   }
 
+  // Free hashtable
+  destroy_hash_table(ht);
+
   return route;
 }
 
